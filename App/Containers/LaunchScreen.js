@@ -3,11 +3,29 @@ import { ScrollView, Text, Image, View } from 'react-native'
 import DevscreensButton from '../../ignite/DevScreens/DevscreensButton.js'
 
 import { Images } from '../Themes'
+import RoundedButton from '../Components/RoundedButton'
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
+import SendSMS from 'react-native-sms'
+
+//some stuff
+
 
 export default class LaunchScreen extends Component {
+  send_sms() {
+
+    SendSMS.send({
+      body: 'The default body of the SMS!',
+      recipients: ['04129680087'],
+      successTypes: ['sent', 'queued'],
+      allowAndroidSendWithoutReadPermission: true
+    }, (completed, cancelled, error) => {
+
+      console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
+
+    });
+  }
   render () {
     return (
       <View style={styles.mainContainer}>
@@ -25,6 +43,9 @@ export default class LaunchScreen extends Component {
           </View>
 
           <DevscreensButton />
+          <RoundedButton onPress={this.send_sms}>
+            Send SMS
+          </RoundedButton>
         </ScrollView>
       </View>
     )
