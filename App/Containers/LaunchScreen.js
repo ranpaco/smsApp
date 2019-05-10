@@ -7,24 +7,27 @@ import RoundedButton from '../Components/RoundedButton'
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
-import SendSMS from 'react-native-sms'
 
 //some stuff
 
+var SmsAndroid = require('react-native-sms-android');
 
 export default class LaunchScreen extends Component {
   send_sms() {
 
-    SendSMS.send({
-      body: 'The default body of the SMS!',
-      recipients: ['04129680087'],
-      successTypes: ['sent', 'queued'],
-      allowAndroidSendWithoutReadPermission: true
-    }, (completed, cancelled, error) => {
+    SmsAndroid.sms(
+      '04129680087', // phone number to send sms to
+      'This is the sms text', // sms body
+      'sendDirect', // sendDirect or sendIndirect
+      (err, message) => {
+        if (err){
+          console.log("error");
+        } else {
+          console.log(message); // callback message
+        }
+      }
+    );
 
-      console.log('SMS Callback: completed: ' + completed + ' cancelled: ' + cancelled + 'error: ' + error);
-
-    });
   }
   render () {
     return (
