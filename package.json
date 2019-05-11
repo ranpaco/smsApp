@@ -33,6 +33,7 @@
     "ramda": "^0.26.1",
     "react": "16.8.3",
     "react-native": "0.59.3",
+    "react-native-android-sms": "git+https://github.com/msmakhlouf/react-native-android-sms.git",
     "react-native-config": "^0.11.7",
     "react-native-device-info": "^1.6.1",
     "react-native-gesture-handler": "1.0.9",

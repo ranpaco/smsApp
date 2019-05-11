@@ -15,7 +15,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import com.rhaker.reactnativesmsandroid.RNSmsAndroidPackage;
+import my.qash.react.SmsPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -33,7 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNI18nPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
-            new RNSmsAndroidPackage()
+            new SmsPackage()
       );
     }
 
