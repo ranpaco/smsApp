@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View, Platform, PermissionsAndroid, Alert } from 'react-native'
+import { ScrollView, Text, Image, View, Platform, PermissionsAndroid, Alert, TextInput } from 'react-native'
 import DevscreensButton from '../../ignite/DevScreens/DevscreensButton.js'
 
 import { Images } from '../Themes'
@@ -13,6 +13,11 @@ import styles from './Styles/LaunchScreenStyles'
 //var SmsAndroid = require('react-native-sms-android');
 var SmsAndroid = require('react-native-android-sms');
 export default class LaunchScreen extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { smsNumber: 'Phone Number' };
+  }
 
  componentDidMount = () => {
    //Checking for the permission just after component loaded
@@ -42,16 +47,16 @@ export default class LaunchScreen extends Component {
         alert('IOS device found');
     }
  }
-  send_sms() {
+  send_sms = () => {
 
     var SmsAndroid = require('react-native-android-sms');
     var text = "Hello ... QASH I AM YOUR FATHER !!!!!";
     var addressList = {
         addressList: [
-            "+584129680087"
+            this.state.smsNumber
         ]
     }
-
+    console.log({addressList});
     SmsAndroid.send(JSON.stringify(addressList), text, (fail) => {
             console.log("OH Snap: " + fail)
         },
@@ -72,12 +77,17 @@ export default class LaunchScreen extends Component {
           <View style={styles.section} >
             <Image source={Images.ready} />
             <Text style={styles.sectionText}>
-              This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
+            Send SMS
             </Text>
           </View>
 
           <DevscreensButton />
-          <RoundedButton onPress={this.send_sms}>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1, color: 'white', marginHorizontal: 20,paddingHorizontal: 10}}
+            onChangeText={(smsNumber) => this.setState({smsNumber})}
+            value={this.state.smsNumber}
+          />  
+          <RoundedButton onPress={() => this.send_sms()}>
             Send SMS
           </RoundedButton>
         </ScrollView>
