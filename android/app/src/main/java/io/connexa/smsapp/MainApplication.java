@@ -1,4 +1,4 @@
-package com.smsapp;
+package io.connexa.smsapp;
 
 import android.app.Application;
 

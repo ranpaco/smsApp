@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, Image, View, Platform, PermissionsAndroid, Alert, TextInput } from 'react-native'
+import { 
+  ScrollView, 
+  Text, 
+  Image, 
+  View, 
+  Platform, 
+  PermissionsAndroid, 
+  Alert, 
+  TextInput,
+  Modal } from 'react-native'
 import DevscreensButton from '../../ignite/DevScreens/DevscreensButton.js'
 
 import { Images } from '../Themes'
@@ -10,13 +19,18 @@ import styles from './Styles/LaunchScreenStyles'
 
 //some stuff
 
+import FormSendSmsScreen from './FormSendSmsScreen'
+
 //var SmsAndroid = require('react-native-sms-android');
 var SmsAndroid = require('react-native-android-sms');
 export default class LaunchScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { smsNumber: 'Phone Number' };
+    this.state = { 
+      smsNumber: 'Phone Number',
+      showModal: false 
+    };
   }
 
  componentDidMount = () => {
@@ -47,10 +61,15 @@ export default class LaunchScreen extends Component {
         alert('IOS device found');
     }
  }
-  send_sms = () => {
+
+  toggleModal = () => {
+    this.setState({ showModal: !this.state.showModal })
+  }
+
+  send_sms = (text) => {
 
     var SmsAndroid = require('react-native-android-sms');
-    var text = "Hello ... QASH I AM YOUR FATHER !!!!!";
+    //var text = "Hello ... QASH I AM YOUR FATHER !!!!!";
     var addressList = {
         addressList: [
             this.state.smsNumber
@@ -62,7 +81,10 @@ export default class LaunchScreen extends Component {
         },
         (status) => {
             console.log('Status: ', status);
+            
         });
+    this.setState({ showModal: !this.state.showModal })
+    alert("SMS SENT")
 
   }
   render () {
@@ -86,10 +108,16 @@ export default class LaunchScreen extends Component {
             style={{height: 40, borderColor: 'gray', borderWidth: 1, color: 'white', marginHorizontal: 20,paddingHorizontal: 10}}
             onChangeText={(smsNumber) => this.setState({smsNumber})}
             value={this.state.smsNumber}
+            selectTextOnFocus
           />  
-          <RoundedButton onPress={() => this.send_sms()}>
-            Send SMS
+          <RoundedButton onPress={() => this.toggleModal()}>
+            Continue
           </RoundedButton>
+          <Modal
+            visible={this.state.showModal}
+            onRequestClose={this.toggleModal}>
+            <FormSendSmsScreen screenProps={{ toggle: this.toggleModal }} sendSms={this.send_sms} />
+          </Modal>
         </ScrollView>
       </View>
     )
