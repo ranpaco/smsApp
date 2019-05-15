@@ -6,8 +6,10 @@ const images = {
   ready: require('../Images/your-app.png'),
   ignite: require('../Images/ignite_logo.png'),
   igniteClear: require('../Images/ignite-logo-transparent.png'),
+  icbfClear: require('../Images/icbf-logo-transparent.png'),
   tileBg: require('../Images/tile_bg.png'),
-  background: require('../Images/BG.png'),
+  //background: require('../Images/BG.png'),
+  background: require('../Images/BG-ICBF.png'),
   buttonBackground: require('../Images/button-bg.png'),
   api: require('../Images/Icons/icon-api-testing.png'),
   components: require('../Images/Icons/icon-components.png'),
@@ -19,7 +21,8 @@ const images = {
   chevronRight: require('../Images/Icons/chevron-right.png'),
   hamburger: require('../Images/Icons/hamburger.png'),
   backButton: require('../Images/Icons/back-button.png'),
-  closeButton: require('../Images/Icons/close-button.png')
+  closeButton: require('../Images/Icons/close-button.png'),
+  icbf: require('../Images/ICBF_logo.png')
 }
 
 export default images
