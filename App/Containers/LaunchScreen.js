@@ -97,7 +97,7 @@ export default class LaunchScreen extends Component {
           </View>
 
           <View style={styles.section} >
-            <Image source={Images.ready} />
+            
             <Text style={styles.sectionText}>
             Send SMS
             </Text>
@@ -110,15 +110,18 @@ export default class LaunchScreen extends Component {
             value={this.state.smsNumber}
             selectTextOnFocus
           />  
-          <RoundedButton onPress={() => this.toggleModal()}>
-            Continue
-          </RoundedButton>
+
           <Modal
             visible={this.state.showModal}
             onRequestClose={this.toggleModal}>
             <FormSendSmsScreen screenProps={{ toggle: this.toggleModal }} sendSms={this.send_sms} />
           </Modal>
         </ScrollView>
+        <View style={styles.bottom}>
+          <RoundedButton onPress={() => this.toggleModal()}>
+            INICIAR ENCUESTA
+          </RoundedButton>        
+        </View>
       </View>
     )
   }

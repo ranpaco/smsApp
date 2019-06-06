@@ -65,5 +65,32 @@ export default StyleSheet.create({
     ...Fonts.style.h5,
     fontSize: 12,
     color: Colors.snow
+  },
+  input: {
+    flex: 1,
+    backgroundColor: 'white', 
+    borderRadius: 5, height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 2, 
+    color: 'black', 
+    marginHorizontal: 20,
+    marginVertical: 8,
+    paddingHorizontal: 10         
+  },
+  inputOnlyRead: {
+    flex: 1,
+    backgroundColor: '#D8D8D8', 
+    borderRadius: 5, height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 2, 
+    color: 'black', 
+    marginHorizontal: 20,
+    marginVertical: 8,
+    paddingHorizontal: 10         
+  },
+  bottom: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 36
   }
 })
