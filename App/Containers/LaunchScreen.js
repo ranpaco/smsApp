@@ -20,6 +20,7 @@ import styles from './Styles/LaunchScreenStyles'
 //some stuff
 
 import FormSendSmsScreen from './FormSendSmsScreen'
+import FormVerificacionScreen from './FormVerificacionScreen'
 
 //var SmsAndroid = require('react-native-sms-android');
 var SmsAndroid = require('react-native-android-sms');
@@ -29,7 +30,8 @@ export default class LaunchScreen extends Component {
     super(props);
     this.state = { 
       smsNumber: 'Phone Number',
-      showModal: false 
+      showModal: false,
+      showModalVerificacion: false,
     };
   }
 
@@ -66,6 +68,10 @@ export default class LaunchScreen extends Component {
     this.setState({ showModal: !this.state.showModal })
   }
 
+  toggleModalVerificacion = () => {
+    this.setState({ showModalVerificacion: !this.state.showModalVerificacion })
+  }
+
   send_sms = (text) => {
 
     var SmsAndroid = require('react-native-android-sms');
@@ -76,15 +82,18 @@ export default class LaunchScreen extends Component {
         ]
     }
     console.log({addressList});
-    SmsAndroid.send(JSON.stringify(addressList), text, (fail) => {
-            console.log("OH Snap: " + fail)
-        },
-        (status) => {
-            console.log('Status: ', status);
+    
+    // SmsAndroid.send(JSON.stringify(addressList), text, (fail) => {
+    //         console.log("OH Snap: " + fail)
+    //     },
+    //     (status) => {
+    //         console.log('Status: ', status);
             
-        });
-    this.setState({ showModal: !this.state.showModal })
-    alert("SMS SENT")
+    //     });
+    
+    this.setState({ showModalVerificacion: !this.state.showModalVerificacion, showModal: !this.state.showModal })
+    
+    //alert("SMS SENT")
 
   }
   render () {
@@ -116,6 +125,11 @@ export default class LaunchScreen extends Component {
             onRequestClose={this.toggleModal}>
             <FormSendSmsScreen screenProps={{ toggle: this.toggleModal }} sendSms={this.send_sms} />
           </Modal>
+          <Modal
+            visible={this.state.showModalVerificacion}
+            onRequestClose={this.toggleModalVerificacion}>
+            <FormVerificacionScreen screenProps={{ toggle: this.toggleModalVerificacion }} sendSms={this.send_sms} />
+          </Modal>          
         </ScrollView>
         <View style={styles.bottom}>
           <RoundedButton onPress={() => this.toggleModal()}>
