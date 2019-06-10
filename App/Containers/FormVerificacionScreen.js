@@ -5,6 +5,7 @@ import styles from './Styles/FormSendSmsStyles'
 
 import { Images } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
+import FullButton from '../Components/FullButton'
 import Moment from 'moment';
 
 export default class FormVerificacionScreen extends React.Component {
@@ -54,18 +55,43 @@ render () {
         }}>
           <Image source={Images.closeButton} />
         </TouchableOpacity>
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.containerWhite}>
           <View style={styles.centered}>
             <Image source={Images.icbfClear} style={styles.logo} />
           </View>
-          
-          <TextInput
-            style={styles.input}
-            onChangeText={(mujeresGestantes) => this.setState({mujeresGestantes})}
-            value={this.state.mujeresGestantes}
-            selectTextOnFocus
-          /> 
-           
+          <Text style={styles.estandarText}>
+          Estandar 1: Verifica la existencia del registro civil de las ninas y los ninos (y del documento de identidad de las mujeres gestantes). En los casos de no contarse orienta y hace seguimiento a la familia y cuidadoes y adelanta acciones ante la autoridad competente. segun corresponda 
+          </Text>
+          <View>
+            <Text style={styles.questionText}>
+            1. La copia del documento de identificacion de todas las ninas, ninos y mujeres gestantes reposa en sus respectivas carpetas y es legible y sin enmendaduras
+            </Text>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'stretch'}}>
+              <FullButton styles={{width:100 }} text="SI" />
+
+              <FullButton styles={{width:100 }} text="NO" />
+            </View> 
+          </View>
+          <View>
+            <Text style={styles.questionText}>
+            2. En caso de no contar con los soportes del documento de identificacion de todas las ninas, ninos y mujeres gestantes, presernta alguna de las siguientes evidencias: actas, fotos, videos, listados de asistencia, registro de novedades, donde se desarrolle un proceso de sensibilizacion, orientacion y acompanamiento a las familias sobre la importancia del derecho (y las autoridades etnicas si aplica).
+            </Text>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'stretch'}}>
+              <FullButton styles={{ width:80 }} text="SI" />
+              <FullButton styles={{width:80 }}  text="NO" />
+              <FullButton styles={{width:80 }}  text="N.A." />
+            </View> 
+          </View>   
+          <View>
+            <Text style={styles.questionText}>
+            3. En caso de no contar ocn los soportes del documento de identidad de todas las ninas, ninos y mujeres gestantes  la USD pone a conociiento a la EAS dicha situacion. La notificacion a la EAS se encuenta registrada en el cuaderno de novedades.
+            </Text>
+            <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'stretch'}}>
+              <FullButton styles={{ width:80 }} text="SI" />
+              <FullButton styles={{width:80 }}  text="NO" />
+              <FullButton styles={{width:80 }}  text="N.A." />
+            </View> 
+          </View>   
         </ScrollView>
         <View style={styles.bottom}>
           <RoundedButton onPress={() => this.props.sendSms(this.getTextToSend())}>

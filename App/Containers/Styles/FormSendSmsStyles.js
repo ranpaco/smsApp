@@ -7,6 +7,15 @@ export default StyleSheet.create({
     marginBottom: 36,
     paddingTop: Metrics.section
   },
+  containerWhite: {
+    marginVertical: 60,
+    marginHorizontal:15,
+    paddingVertical: Metrics.section,
+    backgroundColor: 'white', 
+    borderRadius: 5,  
+    borderColor: 'gray', 
+    borderWidth: 2,  
+  },  
   logo: {
     height: Metrics.images.logo,
     width: Metrics.images.logo,
@@ -41,6 +50,24 @@ export default StyleSheet.create({
     borderRightWidth: 1,
     borderTopWidth: 1
   },
+  questionText: {
+    textAlign: 'justify',
+    fontFamily: Fonts.base,
+    fontSize: 14,
+    marginHorizontal: Metrics.baseMargin,
+    lineHeight: 30,
+    marginVertical: Metrics.doubleBaseMargin,
+    color: 'black'
+  },
+  estandarText: {
+    textAlign: 'justify',
+    fontFamily: Fonts.base,
+    fontSize: 16,
+    marginHorizontal: Metrics.baseMargin,
+    lineHeight: 30,
+    marginVertical: Metrics.doubleBaseMargin,
+    color: 'black'
+  },
   sectionText: {
     textAlign: 'center',
     fontFamily: Fonts.base,
@@ -69,7 +96,8 @@ export default StyleSheet.create({
   input: {
     flex: 1,
     backgroundColor: 'white', 
-    borderRadius: 5, height: 40, 
+    borderRadius: 5, 
+    height: 40, 
     borderColor: 'gray', 
     borderWidth: 2, 
     color: 'black', 
