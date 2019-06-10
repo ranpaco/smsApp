@@ -72,7 +72,7 @@ export default class LaunchScreen extends Component {
     this.setState({ showModalVerificacion: !this.state.showModalVerificacion })
   }
 
-  send_sms = (text) => {
+  send_sms = (text, step) => {
 
     var SmsAndroid = require('react-native-android-sms');
     //var text = "Hello ... QASH I AM YOUR FATHER !!!!!";
@@ -83,17 +83,22 @@ export default class LaunchScreen extends Component {
     }
     console.log({addressList});
     
-    // SmsAndroid.send(JSON.stringify(addressList), text, (fail) => {
-    //         console.log("OH Snap: " + fail)
-    //     },
-    //     (status) => {
-    //         console.log('Status: ', status);
+    SmsAndroid.send(JSON.stringify(addressList), text, (fail) => {
+            console.log("OH Snap: " + fail)
+        },
+        (status) => {
+            console.log('Status: ', status);
             
-    //     });
+        });
+    if (step === 1)
     
     this.setState({ showModalVerificacion: !this.state.showModalVerificacion, showModal: !this.state.showModal })
     
-    //alert("SMS SENT")
+    if (step === 2){
+      this.setState({ showModalVerificacion: false, showModal: false })
+      setTimeout(() => {alert("Se envio el SMS")},1000)
+
+    }
 
   }
   render () {

@@ -4,13 +4,16 @@ import { Metrics, Colors, Fonts, ApplicationStyles } from '../../Themes/'
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
-    marginBottom: 36,
-    paddingTop: Metrics.section
+    flex: 1,
+    //marginBottom: 60,
+    paddingTop: Metrics.section,
+    //paddingBottom: 100
   },
   containerWhite: {
-    marginVertical: 60,
+    marginTop: 60,
     marginHorizontal:15,
-    paddingVertical: Metrics.section,
+    paddingTop: Metrics.section,
+    //paddingBottom: 30,
     backgroundColor: 'white', 
     borderRadius: 5,  
     borderColor: 'gray', 
@@ -117,8 +120,9 @@ export default StyleSheet.create({
     paddingHorizontal: 10         
   },
   bottom: {
-    flex: 1,
+    //flex: 1,
     justifyContent: 'flex-end',
-    marginBottom: 36
+    height: 60
+    //marginBottom: Metrics.section
   }
 })

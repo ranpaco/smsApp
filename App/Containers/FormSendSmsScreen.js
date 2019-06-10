@@ -31,13 +31,19 @@ export default class FormSendSmsScreen extends React.Component {
     };
   }
 getTextToSend = () => {
-	return this.state.question1 + " / " + this.state.question2 + " /  " + this.state.question3;
+	return this.state.fechaVisita + " / " + 
+  this.state.horaVisita + " /  " + 
+  this.state.profesional + " /  " + 
+  this.state.cedula + " /  " + 
+  this.state.codigoCuentame + " /  " + 
+  this.state.infantes + " /  " + 
+  this.state.mujeresGestantes;
 }
 
 findCodigoCuentame = (codigoCuentame)  => {
   this.setState({codigoCuentame})
   if (codigoCuentame === "1234")
-    this.setState({unitServicio: "Unidad 5", direccion: "Calle 100, Bogota"})
+    this.setState({unitServicio: "Unidad 5", direccion: "Calle 100, Bogota", admServicio: "Rafael Palma", nit: "XXX.XXX.XXX - Y."})
 }
 
 
@@ -54,7 +60,8 @@ render () {
         }}>
           <Image source={Images.closeButton} />
         </TouchableOpacity>
-        <ScrollView showsVerticalScrollIndicator={false} bounces={false} style={styles.container}>
+        <ScrollView contentContainerStyle={{flexGrow:1}} showsVerticalScrollIndicator={false}  style={styles.container}>
+          <View style={{flex:1, paddingBotton: 100}}>
           <View style={styles.centered}>
             <Image source={Images.icbfClear} style={styles.logo} />
           </View>
@@ -87,19 +94,6 @@ render () {
             selectTextOnFocus
           /> 
           </View>
-        
-          <TextInput
-            style={styles.input}
-            onChangeText={(admServicio) => this.setState({admServicio})}
-            value={this.state.admServicio}
-            selectTextOnFocus
-          /> 
-          <TextInput
-            style={styles.input}
-            onChangeText={(nit) => this.setState({nit})}
-            value={this.state.nit}
-            selectTextOnFocus
-          />           
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
           <TextInput
             style={styles.input}
@@ -114,7 +108,20 @@ render () {
             editable = {false}
             //selectTextOnFocus
           /> 
-          </View>
+          </View>        
+          <TextInput
+            style={styles.inputOnlyRead}
+            //onChangeText={(admServicio) => this.setState({admServicio})}
+            value={this.state.admServicio}
+            //selectTextOnFocus
+          /> 
+          <TextInput
+            style={styles.inputOnlyRead}
+            //onChangeText={(nit) => this.setState({nit})}
+            value={this.state.nit}
+            //selectTextOnFocus
+          />           
+
           <TextInput
             style={styles.inputOnlyRead}
             //onChangeText={(direccion) => this.setState({direccion})}
@@ -122,7 +129,7 @@ render () {
             editable = {false}
            // selectTextOnFocus
           />
-          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingBottom: 50}}>
           <TextInput
             style={styles.input}
             onChangeText={(infantes) => this.setState({infantes})}
@@ -135,11 +142,12 @@ render () {
             value={this.state.mujeresGestantes}
             selectTextOnFocus
           /> 
-          </View>            
+          </View> 
+          </View>           
         </ScrollView>
         <View style={styles.bottom}>
-          <RoundedButton onPress={() => this.props.sendSms(this.getTextToSend())}>
-            Send SMS
+          <RoundedButton onPress={() => this.props.sendSms(this.getTextToSend(), 1)}>
+            Siguiente
           </RoundedButton>         
         </View>
       </View>
