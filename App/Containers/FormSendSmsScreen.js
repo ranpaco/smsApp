@@ -6,12 +6,13 @@ import styles from './Styles/FormSendSmsStyles'
 import { Images } from '../Themes'
 import RoundedButton from '../Components/RoundedButton'
 import Moment from 'moment';
+var esLocale = require('moment/locale/es');
 
 export default class FormSendSmsScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    Moment.locale('es')
+    Moment.locale('es', esLocale)
     let date = new Date()
     this.state = { 
       question1: 'Question 1',
